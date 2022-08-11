@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<head>
+    <title>Coding Editor</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <!-- <link rel="shortcut icon" href="/assets/favicon.ico">
+    <link rel="stylesheet" href="/assets/dcode.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <style type="text/css">
+        body,html {
+            margin:0;
+            height: 100%; 
+          font-family: "Lato", sans-serif;
+          /*background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxNfOgShX96meXdiyT9FagKGsy-6t0xh5N3Fj8tuKZc9NTdsk923uig78GqTBoLK1SR9Q&usqp=CAU');*/
+          background: linear-gradient(rgba(255,255,255,.2), rgba(255,255,255,.2)),url('https://w0.peakpx.com/wallpaper/116/459/HD-wallpaper-microchip-neon-lines-black-background-chips-technology-backgrounds.jpg');
+          background-color: #cccccc;
+          background-position: center;
+          background-repeat: no-repeat;
+          background-size: cover;
+          position:relative;
+          
+          /*opacity: 0.5;*/
+          }
+
+            .sidenav {
+          height: 100%;
+          width: 0;
+          position: fixed;
+          z-index: 1;
+          top: 0;
+          left: 0;
+          background-color: #111;
+          overflow-x: hidden;
+          transition: 0.5s;
+          padding-top: 60px;
+        }
+
+        .sidenav a {
+          padding: 8px 8px 8px 32px;
+          text-decoration: none;
+          font-size: 25px;
+          color: #818181;
+          display: block;
+          transition: 0.3s;
+        }
+
+        .dropdown-btn1,.dropdown-btn2 {
+        padding: 6px 8px 6px 16px;
+        text-decoration: none;
+        font-size: 20px;
+        color: #818181;
+        display: block;
+        border: none;
+        background: none;
+        width: 90%;
+        text-align: left;
+        cursor: pointer;
+        outline: none;
+        border-radius: 50px;
+        border: solid;
+        background-color: #3e939fb8;
+        color: white;
+        transition: 0s;
+        margin: 10px;
+      }
+        .sidenav a:hover {
+          color: #f1f1f1;
+        }
+
+        .sidenav .closebtn {
+          position: absolute;
+          top: 0;
+          right: 25px;
+          font-size: 36px;
+          margin-left: 50px;
+        }
+
+        #main {
+          transition: margin-left .5s;
+          padding-top: 16px;
+          /*padding-left: 16px;*/
+          padding-bottom: 16px;
+          margin-left: 20px;
+        }
+
+        @media screen and (max-height: 450px) {
+          .sidenav {padding-top: 15px;}
+          .sidenav a {font-size: 18px;}
+        }
+        .forbutton,.whilebutton,.dowhilebutton,.coutbutton,.ifbutton,.elsebutton,.cinbutton,.intbutton,.floatbutton,.functionbutton,.switchbutton,.pairbutton,.vectorbutton,.stackbutton,.queuebutton,.dequeuebutton,.listbutton,.minheapbutton,.maxheapbutton,.setbutton,.multisetbutton,.mapbutton,.beginbutton,.endbutton,.insertbutton,.countbutton,.classbutton,.constructorbutton,.classfunctionbutton,.objectbutton,.pointertoobjectbutton,.publicbutton,.privatebutton,.protectedbutton {
+          background-color: #b7b5b5;
+          border: 0 solid #e2e8f0;
+          border-radius: 1.0rem;
+          box-sizing: border-box;
+          color: #0d172a;
+          cursor: pointer;
+          display: inline-block;
+          font-family: "Basier circle",-apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+          font-size: 1.1rem;
+          font-weight: 600;
+          line-height: 1;
+          padding: 1rem 1.6rem;
+          text-align: center;
+          text-decoration: none #0d172a solid;
+          text-decoration-thickness: auto;
+          transition: all .1s cubic-bezier(.4, 0, .2, 1);
+          box-shadow: 0px 1px 2px rgba(166, 175, 195, 0.25);
+          user-select: none;
+          -webkit-user-select: none;
+          touch-action: manipulation;
+          transition: 0.3s;
+          margin-left: 10px;
+          margin-top: 10px;
+          margin-right: 10px;
+        }
+
+        .forbutton:hover,.whilebutton:hover,.dowhilebutton:hover,.coutbutton:hover,.ifbutton:hover,.elsebutton:hover,.cinbutton:hover,.intbutton:hover,.floatbutton:hover,.functionbutton:hover,.switchbutton:hover,.pairbutton:hover,.vectorbutton:hover,.stackbutton:hover,.queuebutton:hover,.dequeuebutton:hover,.listbutton:hover,.minheapbutton:hover,.maxheapbutton:hover,.setbutton:hover,.multisetbutton:hover,.mapbutton:hover,.beginbutton:hover,.endbutton:hover,.insertbutton:hover,.countbutton:hover,.classbutton:hover,.constructorbutton:hover,.classfunctionbutton:hover,.objectbutton:hover,.pointertoobjectbutton:hover,.publicbutton:hover,.privatebutton:hover,.protectedbutton:hover {
+          background-color: #1e293b;
+          color: #fff;
+          transition: 0.3s;
+        }
+
+        @media (min-width: 768px) {
+          .forbutton,.whilebutton,.dowhilebutton,.coutbutton,.ifbutton,.elsebutton,.cinbutton,.intbutton,.floatbutton,.functionbutton,.switchbutton,.pairbutton,.vectorbutton,.stackbutton,.queuebutton,.dequeuebutton,.listbutton,.minheapbutton,.maxheapbutton,.setbutton,.multisetbutton,.mapbutton,.beginbutton,.endbutton,.insertbutton,.countbutton,.classbutton,.constructorbutton,.classfunctionbutton,.objectbutton,.pointertoobjectbutton,.publicbutton,.privatebutton,.protectedbutton {
+            font-size: 1.125rem;
+            padding: 1rem 2rem;
+            transition: 0.3s;
+          }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        .topnav {
+            overflow: hidden;
+            background-color: #333;
+            transition: 0.5s;
+            margin-left: 20px;
+        }
+
+        .topnav button {
+            float: left;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 20px;
+            background-color: #333;
+            border-color: #333;
+            cursor: pointer;
+        }
+
+        .topnav button:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        .topnav button.active {
+            background-color: #05333c;
+            color: white;
+        }
+
+        .dropdown-container1,.dropdown-container2 {
+        display: none;
+        background-color: #262626;
+        padding: 8px;
+      }
+
+      /* Optional: Style the caret down icon */
+      .fa-caret-down {
+        float: right;
+        padding-right: 8px;
+      }
+
+      .fa-caret-up {
+        float: right;
+        padding-right: 8px;
+      }
+
+
+
+        .active{
+            background-color: #05333c;
+            color: white;
+        }
+
+        .active2{
+            background-color: #008000b0;
+            color: white;
+            /*box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);*/
+            transition: 1s;
+        }
+        .keyboard {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    padding: 5px 0;
+    background: #100361;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
+    user-select: none;
+    transition: bottom 0.4s;
+}
+
+.keyboard--hidden {
+    bottom: -100%;
+}
+
+.keyboard__keys {
+    text-align: center;
+}
+
+.keyboard__key {
+    height: 45px;
+    width: 6%;
+    max-width: 90px;
+    margin: 3px;
+    border-radius: 4px;
+    border: none;
+    background: rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+    font-size: 1.05rem;
+    outline: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    vertical-align: top;
+    padding: 0;
+    -webkit-tap-highlight-color: transparent;
+    /*position: relative;*/
+}
+
+.keyboard__key:active {
+    background: rgba(255, 255, 255, 0.12);
+}
+
+.keyboard__key--wide {
+    width: 10%;
+}
+
+.keyboard__key--extra-wide {
+    width: 36%;
+    max-width: 500px;
+}
+
+.keyboard__key--activatable::after {
+    content: '';
+    top: 10px;
+    right: 10px;
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 50%;
+}
+
+.keyboard__key--active::after {
+    background: #08ff00;
+}
+
+.keyboard__key--dark {
+    background: rgba(0, 0, 0, 0.25);
+}
+
+input[type=text] 
+{
+        width: 420px;
+        padding: 5px 10px;
+        margin: 10px;
+        display: inline-block;
+        border: 5px solid #ccc;
+        border-radius: 5px;
+}
+
+/*textarea{
+        width: 750px;
+        height: 150px;
+        padding: 5px 10px;
+        margin: 20px;
+        display: inline-block;
+        border: 5px solid #ccc;
+        border-radius: 5px;
+        transition: 0.5s;
+        /*margin-left: 315px;
+    }*/
+  #editor{
+    width: 750px;
+    height: 350px;
+    padding: 5px 10px;
+    margin: 20px;
+    display: inline-block;
+    border: 5px solid #ccc;
+    border-radius: 5px;
+    transition: 0.5s;
+    /*margin-left: 315px;
+  }
+    </style>
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<body>
+    <div id="mySidenav" class="sidenav">
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+      <!-- <a href="#">About</a>
+      <a href="#">Services</a>
+      <a href="#">Clients</a>
+      <a href="#">Contact</a> -->
+      <button type="button" class="dropdown-btn1">BASIC 
+      <i style="display:block;" class="fa fa-caret-down"></i>
+      <i style="display:none;" class="fa fa-caret-up"></i>
+      </button>
+      <div class="dropdown-container1">
+        <button class="forbutton" role="button">for</button>
+        <button class="whilebutton" role="button">while</button>
+        <button class="dowhilebutton" role="button">do-while</button>
+        <button class="cinbutton" role="button">cin</button>
+        <button class="coutbutton" role="button">cout</button>
+        <button class="ifbutton" role="button">if</button>
+        <button class="elsebutton" role="button">else</button>
+        <button class="intbutton" role="button">int</button>
+        <button class="floatbutton" role="button">float</button>
+        <button class="functionbutton" role="button">function</button>
+        <button class="switchbutton" role="button">switch</button>
+      </div>
+
+
+      <button type="button" class="dropdown-btn2">INTERMEDIATE (OOP)
+      <i style="display:block;" class="fa fa-caret-down"></i>
+      <i style="display:none;" class="fa fa-caret-up"></i>
+      </button>
+      <div class="dropdown-container2">
+        <button class="classbutton" role="button">class</button>
+        <button class="constructorbutton" role="button">constructor</button>
+        <button class="classfunctionbutton" role="button">function</button>
+        <button class="objectbutton" role="button">object</button>
+        <button class="pointertoobjectbutton" role="button">pointer to object</button>
+        <button class="publicbutton" role="button">public</button>
+        <button class="privatebutton" role="button">private</button>
+        <button class="protectedbutton" role="button">protected</button>
+        <!-- <button class="whilebutton" role="button">while</button>
+        <button class="dowhilebutton" role="button">do-while</button>
+        <button class="cinbutton" role="button">cin</button>
+        <button class="coutbutton" role="button">cout</button>
+        <button class="ifbutton" role="button">if</button>
+        <button class="elsebutton" role="button">else</button>
+        <button class="intbutton" role="button">int</button>
+        <button class="floatbutton" role="button">float</button>
+        <button class="functionbutton" role="button">function</button>
+        <button class="switchbutton" role="button">switch</button> -->
+      </div>
+
+
+      <button type="button" class="dropdown-btn2">ADVANCED (DSA)
+      <i style="display:block;" class="fa fa-caret-down"></i>
+      <i style="display:none;" class="fa fa-caret-up"></i>
+      </button>
+      <div class="dropdown-container2">
+        <button class="pairbutton" role="button">pair</button>
+        <button class="vectorbutton" role="button">vector</button>
+        <button class="stackbutton" role="button">stack</button>
+        <button class="queuebutton" role="button">queue</button>
+        <button class="dequeuebutton" role="button">dequeue</button>
+        <button class="listbutton" role="button">list</button>
+        <button class="minheapbutton" role="button">min-heap</button>
+        <button class="maxheapbutton" role="button">max-heap</button>
+        <button class="setbutton" role="button">set</button>
+        <button class="multisetbutton" role="button">multiset</button>
+        <button class="mapbutton" role="button">map</button>
+        <button class="beginbutton" role="button">begin</button>
+        <button class="endbutton" role="button">end</button>
+        <button class="insertbutton" role="button">insert</button>
+        <button class="countbutton" role="button">count</button>
+        <!-- <button class="whilebutton" role="button">while</button>
+        <button class="dowhilebutton" role="button">do-while</button>
+        <button class="cinbutton" role="button">cin</button>
+        <button class="coutbutton" role="button">cout</button>
+        <button class="ifbutton" role="button">if</button>
+        <button class="elsebutton" role="button">else</button>
+        <button class="intbutton" role="button">int</button>
+        <button class="floatbutton" role="button">float</button>
+        <button class="functionbutton" role="button">function</button>
+        <button class="switchbutton" role="button">switch</button> -->
+      </div>
+    </div>
+
+
+<div id="main">
+    <!-- <span style="font-size:30px;cursor: pointer;" onclick="openNav()">&#9776; Programming Language Constructs</span> -->
+    <span style="font-size:30px;cursor: pointer;" onclick="openNav()">&#9776;</span>
+    <span style="font-size:30px;" >Coding Environment</span>
+</div>
+
+
+    <div class="topnav">
+        <button type="button" id="button1" class="content-itinerary__buttons">C++</button>
+        <button type="button" id="button2" class="content-itinerary__buttons">Java</button>
+        <button type="button" id="button3" class="content-itinerary__buttons">Python</button>
+        <button type="button" id="button4" class="content-itinerary__buttons">Javascript</button>
+
+    </div>
+    <br>
+    <!-- <textarea placeholder="//start your code here" class="use-keyboard-input"></textarea> -->
+    <div id="editor"><!-- function foo(items) {
+    var x = "All this is syntax highlighted";
+    return x;
+    } --></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.14/ace.js"></script>
+    <script>
+        var editor = ace.edit("editor");
+        editor.setTheme("ace/theme/monokai");
+        editor.session.setMode("ace/mode/javascript");
+        var n1 = document.getElementById('editor').innertext;
+        console.log(n1);
+        // editor.setValue(editor.value);
+    </script>
+    <script src="jquery_code.js"></script>
+    <script src="script1.js">
+    </script>
+</body>

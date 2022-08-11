@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>ACE in Action</title>
+<style type="text/css" media="screen">
+    #editor { 
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+    }
+</style>
+</head>
+<body>
+
+<div id="editor">
+
+</div>
+
+<!-- <script src="mode-c_cpp.js" type="text/javascript" charset="utf-8"></script> -->    
+<script src="ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    var editor = ace.edit("editor");
+    // editor.setTheme("ace/theme/monokai");
+    editor.setTheme("ace/theme/twilight");
+    // editor.session.setMode("ace/mode/c_cpp");
+    // editor.session.setMode("ace/mode/java");
+    // editor.session.setMode("ace/mode/javascript");
+    editor.session.setMode("ace/mode/python");
+</script>
+</body>
+</html>
