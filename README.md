@@ -35,7 +35,7 @@ In order to execute the **Gesture Controlled Presentation Navigation** component
 * Create a folder ```ppt``` in the root directory of the project and store the images of your presentation in the folder
 * Run the python script `AIPPTControl.py` by executing the command ```python AIPPTControl.py```
 
-## Demo
+## Demo (Demo GIFs may take 1-2 minutes to load :exclamation:)
 
 <h3> <ins> Gesture Controlled Coding IDE </ins> </h3>
 The user would move the cursor while having his/her index finger raised. In order to perform the click operation of the mouse, the user would have to raise his/her index and middle fingers.
